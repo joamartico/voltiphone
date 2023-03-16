@@ -12,14 +12,16 @@ export default function Home() {
 	const [selectedDevice, setSelectedDevice] = useState();
 
 	async function getDevices() {
-		navigator.mediaDevices.enumerateDevices().then((devices) => {
-			const audioinputdevices = devices.filter(
-				(device) =>
-					device.kind === "audioinput" &&
-					!device.label.includes("Virtual")
-			);
-			console.log(audioinputdevices);
-			setDevices(audioinputdevices);
+		navigator.mediaDevices.getUserMedia({ audio: true }).then(() => {
+			navigator.mediaDevices.enumerateDevices().then((devices) => {
+				const audioinputdevices = devices.filter(
+					(device) =>
+						device.kind === "audioinput" &&
+						!device.label.includes("Virtual")
+				);
+				console.log(audioinputdevices);
+				setDevices(audioinputdevices);
+			});
 		});
 	}
 
@@ -54,7 +56,7 @@ export default function Home() {
 				</ion-header>
 
 				<ion-button
-					color='tertiary'
+					color="tertiary"
 					onClick={() => {
 						getDevices();
 					}}
