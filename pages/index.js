@@ -167,7 +167,8 @@ export default function Home() {
 								const constraints = {
 									audio: {
 										deviceId: {
-											exact: device.deviceId,
+											// exact: device.deviceId,
+											exact: 'cd9bee051b812f27940f7ac4b32407172d9b4ae7c4dbde53f2d16b5af7d40b86', // mis auriculares negros
 										},
 									},
 								};
