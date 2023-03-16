@@ -14,12 +14,12 @@ export default function Home() {
 	async function getDevices() {
 		navigator.mediaDevices.getUserMedia({ audio: true }).then(() => {
 			navigator.mediaDevices.enumerateDevices().then((devices) => {
+				console.log(devices);
 				const audioinputdevices = devices.filter(
 					(device) =>
 						device.kind === "audioinput" &&
 						!device.label.includes("Virtual")
 				);
-				console.log(audioinputdevices);
 				setDevices(audioinputdevices);
 			});
 		});
